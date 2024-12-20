@@ -1,15 +1,18 @@
-from flask import Flask
-from datetime import datetime
+from flask import Flask, render_template
 
 app = Flask(__name__)
 
 @app.route('/')
-def home():
-    # Получение текущей даты и времени
-    now = datetime.now()
-    current_time = now.strftime("%Y-%m-%d %H:%M:%S")
-    # Отображение даты и времени на главной странице
-    return f"<h1>Текущая дата и время:</h1><p>{current_time}</p>"
+def index():
+    return render_template('index.html')
+
+@app.route('/blog')
+def blog():
+    return render_template('blog.html')
+
+@app.route('/contacts')
+def contacts():
+    return render_template('contacts.html')
 
 if __name__ == '__main__':
     app.run()
